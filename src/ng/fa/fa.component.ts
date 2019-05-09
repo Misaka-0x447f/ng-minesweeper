@@ -1,5 +1,6 @@
-import {Component, Input, OnInit} from "@angular/core";
-import {IconProp} from "@fortawesome/fontawesome-svg-core";
+import {Component, Input} from "@angular/core";
+import {faBattleNet} from "@fortawesome/free-brands-svg-icons";
+import {faFlag, faHourglassHalf} from "@fortawesome/free-solid-svg-icons";
 
 @Component({
   selector: "ng-fa",
@@ -7,7 +8,7 @@ import {IconProp} from "@fortawesome/fontawesome-svg-core";
   styleUrls: ["./fa.component.styl"]
 })
 
-export class FaComponent implements OnInit {
+export class FaComponent {
 
   constructor() {
   }
@@ -16,15 +17,10 @@ export class FaComponent implements OnInit {
 
   private icoMapping = icoMapping;
 
-  ngOnInit() {
-  }
-
 }
 
-export const icoMapping: IOfIco = {
-  mine: "battle-net"
+export const icoMapping = {
+  mine: faBattleNet,
+  time: faHourglassHalf,
+  flag: faFlag
 };
-
-interface IOfIco {
-  [T: string]: IconProp;
-}

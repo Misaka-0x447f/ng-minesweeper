@@ -1,9 +1,20 @@
-<div style="text-align:center">
-  ng-minesweeper by Misaka
-</div>
+<div class="container">
+  <div style="text-align:center">
+    ng-minesweeper by Misaka
+  </div>
 
-<div>
+  <div class="status">
+    <ng-fa [ico]="'time'"></ng-fa>
+    {{time}}
+    <ng-fa [ico]="'mine'"></ng-fa>
+    {{countMine()}}
+  </div>
 
+  <div class="map">
+    <div class="row" *ngFor="let y of range(sizeOf.y)">
+      <ng-square *ngFor="let x of range(sizeOf.x)" [d]="getStatus(x, y)" (click)="clickHandler(x, y)"></ng-square>
+    </div>
+  </div>
 </div>
 
 <!--<router-outlet></router-outlet>-->

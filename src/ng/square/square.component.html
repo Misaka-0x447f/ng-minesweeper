@@ -1,3 +1,11 @@
-<p>
-  square works!
-</p>
+<div class="block">
+  <span *ngIf="isNumberBlock()">
+    {{d}}
+  </span>
+  <span *ngIf="is('flag')">
+    <ng-fa [ico]="'flag'"></ng-fa>
+  </span>
+  <span *ngIf="is('mine')">
+    <ng-fa [ico]="'mine'"></ng-fa>
+  </span>
+</div>
