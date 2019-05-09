@@ -24,7 +24,7 @@ import state from "../utils/state";
   styleUrls: ["./ng.component.styl"]
 })
 export class NgComponent implements OnInit, OnDestroy {
-  time = NaN;
+  time: number | string = NaN;
   timer = undefined;
   sizeOf = sizeOf;
   range = range;
@@ -76,7 +76,9 @@ export class NgComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.timer = setInterval(() => {
-      this.time = Math.floor(timeElapsed() / 1000);
+      if (state.gameStarted) {
+        this.time = Math.floor(timeElapsed() / 1000);
+      }
     }, 1000);
   }
 

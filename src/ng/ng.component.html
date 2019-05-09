@@ -4,10 +4,20 @@
   </div>
 
   <div class="status">
-    <ng-fa [ico]="'time'"></ng-fa>
-    {{time}}
-    <ng-fa [ico]="'mine'"></ng-fa>
-    {{countMine()}}
+    <div>
+      <span class="ico">
+        <ng-fa [ico]="'time'"></ng-fa>
+      </span>
+      <span>
+        {{time}}
+      </span>
+      <span class="ico">
+        <ng-fa [ico]="'mine'"></ng-fa>
+      </span>
+      <span>
+        {{countMine()}}
+      </span>
+    </div>
   </div>
 
   <div class="window">
