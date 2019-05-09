@@ -6,5 +6,4 @@ import { Component } from "@angular/core";
   styleUrls: ["./ng.component.styl"]
 })
 export class NgComponent {
-  title = "ng-minesweeper";
 }
