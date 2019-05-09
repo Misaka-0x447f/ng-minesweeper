@@ -2,8 +2,8 @@
 
 .container {
   height: 100vh;
-  background-color: bgColor;
-  color: fgColor;
+  background-color: bg-color;
+  color: fg-color;
 }
 
 .status {
@@ -19,4 +19,27 @@
 
 .row {
   display: flex;
+}
+
+.window {
+  position: relative;
+}
+
+.map-cover {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 20em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.tip {
+  background: bg-color;
+  font-size: 2.5em;
+  padding: 0.25em 0.5em;
+  box-sizing: border-box;
+  text-shadow: black 3px 3px 3px;
+  box-shadow: fg-color 10px 10px 0px;
 }

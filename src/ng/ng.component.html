@@ -10,9 +10,22 @@
     {{countMine()}}
   </div>
 
-  <div class="map">
-    <div class="row" *ngFor="let y of range(sizeOf.y)">
-      <ng-square *ngFor="let x of range(sizeOf.x)" [d]="getStatus(x, y)" (click)="clickHandler(x, y)"></ng-square>
+  <div class="window">
+    <div class="map">
+      <div class="row" *ngFor="let y of range(sizeOf.y)">
+        <ng-square
+          *ngFor="let x of range(sizeOf.x)"
+          [d]="getStatus(x, y)"
+          (click)="cl(x, y)"
+          (contextmenu)="fl(x, y)"
+        ></ng-square>
+      </div>
+    </div>
+
+    <div class="map-cover" *ngIf="fail()" (click)="reset()">
+      <div class="tip">
+        {{theTip}}
+      </div>
     </div>
   </div>
 </div>

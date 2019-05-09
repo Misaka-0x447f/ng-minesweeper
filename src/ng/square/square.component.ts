@@ -12,6 +12,10 @@ export class SquareComponent {
 
   @Input() d: dInput;
 
+  isUndisclosed() {
+    return ["blank", "flag"].includes(this.d.toString());
+  }
+
   isNumberBlock() {
     return typeof this.d === "number" && this.d !== 0;
   }

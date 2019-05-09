@@ -1,4 +1,4 @@
-<div class="block">
+<div class="block" [ngClass]="{cover: isUndisclosed()}">
   <span *ngIf="isNumberBlock()">
     {{d}}
   </span>

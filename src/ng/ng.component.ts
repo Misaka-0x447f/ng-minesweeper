@@ -1,9 +1,22 @@
 import {Component, OnDestroy, OnInit} from "@angular/core";
-import {countMine, getNumberOfNode, hasFlag, hasMine, initMineSweeper, isOpened, timeElapsed, touchNode} from "../utils/mine";
+import {
+  countMine,
+  getNumberOfNode,
+  hasFlag,
+  hasMine,
+  initMineSweeper,
+  isOpened,
+  reinitMineSweeper,
+  theTip,
+  timeElapsed,
+  toggleFlag,
+  touchNode
+} from "../utils/mine";
 import {sizeOf} from "../interfaces";
 import {range} from "lodash";
 import {dInput} from "./square/square.component";
 import {point} from "../utils/point";
+import state from "../utils/state";
 
 @Component({
   selector: "ng-root",
@@ -15,18 +28,32 @@ export class NgComponent implements OnInit, OnDestroy {
   timer = undefined;
   sizeOf = sizeOf;
   range = range;
-  started = false;
 
   countMine = countMine;
 
-  clickHandler(x: number, y: number) {
+  theTip = theTip;
+
+  cl(x: number, y: number) {
     const p = point(x, y);
-    if (!this.started) {
+    if (!state.gameStarted) {
       initMineSweeper(p);
-      this.started = true;
+      touchNode(p);
+      state.gameStarted = true;
+      state.init = true;
     } else {
       touchNode(p);
     }
+  }
+
+  fl(x: number, y: number) {
+    toggleFlag(point(x, y));
+    console.log("t");
+    return false;
+  }
+
+  reset() {
+    state.init = false;
+    reinitMineSweeper();
   }
 
   getStatus(x: number, y: number): dInput {
@@ -41,6 +68,10 @@ export class NgComponent implements OnInit, OnDestroy {
       return "flag";
     }
     return "blank";
+  }
+
+  fail() {
+    return !state.gameStarted && state.init;
   }
 
   ngOnInit() {
