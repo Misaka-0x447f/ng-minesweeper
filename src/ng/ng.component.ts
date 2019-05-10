@@ -37,17 +37,20 @@ export class NgComponent implements OnInit, OnDestroy {
     const p = point(x, y);
     if (!state.gameStarted) {
       initMineSweeper(p);
-      touchNode(p);
       state.gameStarted = true;
       state.init = true;
-    } else {
-      touchNode(p);
     }
+    touchNode(p);
   }
 
   fl(x: number, y: number) {
-    toggleFlag(point(x, y));
-    console.log("t");
+    const p = point(x, y);
+    if (!state.gameStarted) {
+      initMineSweeper(p);
+      state.gameStarted = true;
+      state.init = true;
+    }
+    toggleFlag(p);
     return false;
   }
 
