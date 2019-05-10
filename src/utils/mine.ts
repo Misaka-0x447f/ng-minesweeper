@@ -62,7 +62,6 @@ export const touchNode = (t: Point) => {
       if (flags[pt.x][pt.y]) {
         return;
       }
-      flags[pt.x][pt.y] = true;
       if (!hasFlag(pt)) {
         setOpened(pt);
       }
