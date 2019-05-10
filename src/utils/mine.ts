@@ -31,6 +31,10 @@ export const reinitMineSweeper = () => {
 };
 
 export const touchNode = (t: Point) => {
+  if (hasFlag(t)) {
+    return;
+  }
+
   setOpened(t);
 
   if (hasMine(t)) {
@@ -47,14 +51,23 @@ export const touchNode = (t: Point) => {
   // define search algo: BFS recursive
   const search = (p: Point) => {
     // node "p" has no number so we search around
+    if (flags[p.x][p.y]) {
+      return;
+    }
     flags[p.x][p.y] = true;
+    if (!hasFlag(t)) {
+      setOpened(p);
+    }
     pointIteratorAround(p, (pt) => {
+      if (flags[pt.x][pt.y]) {
+        return;
+      }
       flags[pt.x][pt.y] = true;
       if (!hasFlag(pt)) {
         setOpened(pt);
       }
-      if (getNumberOfNode(pt) === 0 && !flags[pt.x][pt.y]) {
-        // safe, not discovered
+      if (getNumberOfNode(pt) === 0) {
+        // safe, continue discover
         stack.push(pt);
       }
     });
