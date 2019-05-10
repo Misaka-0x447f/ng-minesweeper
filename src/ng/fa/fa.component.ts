@@ -15,7 +15,7 @@ export class FaComponent {
 
   @Input() ico: keyof typeof icoMapping;
 
-  private icoMapping = icoMapping;
+  icoMapping = icoMapping;
 
 }
 
