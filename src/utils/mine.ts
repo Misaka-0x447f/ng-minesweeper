@@ -43,7 +43,27 @@ export const touchNode = (t: Point) => {
     return;
   }
 
-  // algorithm touch flag
+  /************* disclosed nodes ***************/
+  if (isOpened(t)) {
+    let blocks = getNumberOfNode(t);
+    pointIteratorAround(t, (tr) => {
+      if (hasFlag(tr)) {
+        blocks--;
+      }
+    });
+    if (blocks === 0) {
+      pointIteratorAround(t, (tr) => {
+        if (!isOpened(tr)) {
+          touchNode(tr);
+        }
+      });
+    }
+    return;
+  }
+
+  /************ undisclosed nodes **************/
+
+  // touched flag
   const flags = getEmptyMap();
   // work stack
   const stack: Array<Point> = [];
