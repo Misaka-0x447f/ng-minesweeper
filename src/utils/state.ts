@@ -6,8 +6,7 @@ class State {
   mine: MineMap = getEmptyMap();
   open: OpenedMap = getEmptyMap();
   flag: FlaggedMap = getEmptyMap();
-  gameStarted = false;
-  init = false;
+  view: "title" | "play" | "victory" | "failed" = "title";
 }
 
 export const state = new State();

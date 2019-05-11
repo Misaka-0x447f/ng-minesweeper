@@ -21,6 +21,7 @@ export const initMineSweeper = (p: Point) => {
 
   state.timeStarted = getTimestamp();
   theTip = randomTip();
+  state.view = "play";
 };
 
 export const reinitMineSweeper = () => {
@@ -39,7 +40,19 @@ export const touchNode = (t: Point) => {
 
   if (hasMine(t)) {
     // game end
-    state.gameStarted = false;
+    state.view = "failed";
+    return;
+  }
+
+  let undisclosedCount = 0;
+  mapIterator(state.open, (v) => {
+    if (!v) {
+      undisclosedCount++;
+    }
+  });
+
+  if (undisclosedCount === mineCount) {
+    state.view = "victory";
     return;
   }
 
@@ -63,7 +76,7 @@ export const touchNode = (t: Point) => {
 
   /************ undisclosed nodes **************/
 
-  // touched flag
+    // touched flag
   const flags = getEmptyMap();
   // work stack
   const stack: Array<Point> = [];
@@ -163,7 +176,8 @@ const randomTip = () => {
     "この世界は意味なし。",
     "爽",
     "你死了！",
-    "希望の花..."
+    "希望の花...",
+    "NM$L"
   ])[0];
 };
 

@@ -35,27 +35,25 @@ export class NgComponent implements OnInit, OnDestroy {
 
   cl(x: number, y: number) {
     const p = point(x, y);
-    if (!state.gameStarted) {
+    if (state.view === "title") {
       initMineSweeper(p);
-      state.gameStarted = true;
-      state.init = true;
+      state.view = "play";
     }
     touchNode(p);
   }
 
   fl(x: number, y: number) {
     const p = point(x, y);
-    if (!state.gameStarted) {
+    if (state.view === "title") {
       initMineSweeper(p);
-      state.gameStarted = true;
-      state.init = true;
+      state.view = "play";
     }
     toggleFlag(p);
     return false;
   }
 
   reset() {
-    state.init = false;
+    state.view = "title";
     reinitMineSweeper();
   }
 
@@ -74,12 +72,12 @@ export class NgComponent implements OnInit, OnDestroy {
   }
 
   fail() {
-    return !state.gameStarted && state.init;
+    return state.view === "failed";
   }
 
   ngOnInit() {
     this.timer = setInterval(() => {
-      if (state.gameStarted) {
+      if (state.view === "play") {
         this.time = Math.floor(timeElapsed() / 1000);
       }
     }, 1000);
